@@ -10,12 +10,28 @@
     function dataservice($http, $q, exception, logger) {
         var service = {
             getPeople: getDepartments,
-            getMessageCount: getMessageCount
+            getMessageCount: getMessageCount,
+            getEmployees: getEmployees
         };
 
         return service;
 
         function getMessageCount() { return $q.when(72); }
+
+        function getEmployees(offset){
+            return $http.get('/api/Employees?filter[limit]=10&filter[offset]='+offset)
+                .then(success)
+                .catch(fail);
+
+            function success(response) {
+                console.log("You are strong!")
+                return response.data;
+            }
+
+            function fail(e) {
+                return exception.catcher('XHR Failed for getDepts')(e);
+            }
+        }
 
         function getDepartments() {
             return $http.get('/api/Departments')
