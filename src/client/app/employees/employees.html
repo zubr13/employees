@@ -16,31 +16,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="e in vm.employees">
-                                <td>{{e.empNo}}</td>
-                                <td>
-                                    <span ng-show="e.disabled" ng-bind="e.firstName"></span>
-                                    <input ng-hide="e.disabled" type="text" class="form-control"  ng-model="e.firstName">
-                                </td>
-                                <td>
-                                    <span ng-show="e.disabled" ng-bind="e.lastName"></span>
-                                    <input ng-hide="e.disabled" type="text" class="form-control" ng-model="e.lastName">
-                                </td>
-                                <td>
-                                    <button ng-show="e.disabled" ng-click="vm.toggleEditMode(e.empNo)" type="button" class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                    </button>
-                                    <button ng-hide="e.disabled" ng-click="vm.editEmployee(e.empNo)" type="button" class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                    </button>
-                                    <button ng-show="e.disabled" ng-click="vm.deleteEmployee(e.empNo)" type="button" class="btn btn-danger">
-                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                    </button>
-                                    <button ng-hide="e.disabled" ng-click="vm.toggleEditMode(e.empNo)" type="button" class="btn btn-danger">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    </button>
-                                </td>
-                            </tr>
+                                <tr ng-repeat="employee in employees" editable-employee="employee"></tr>
                             </tbody>
                         </table>
                     </div>

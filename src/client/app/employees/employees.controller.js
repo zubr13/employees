@@ -6,13 +6,12 @@
         .controller('EmployeesController', EmployeesController);
 
     /* @ngInject */
-    function EmployeesController(employees, logger) {
-        var vm = this;
-        vm.title = 'Employees';
-        vm.employees = [];
-        vm.editEmployee = editEmployee;
-        vm.deleteEmployee = deleteEmployee;
-        vm.toggleEditMode = toggleEditMode;
+    function EmployeesController($scope, employees, logger) {
+        $scope.title = 'Employees';
+        $scope.employees = [];
+        $scope.editEmployee = editEmployee;
+        $scope.deleteEmployee = deleteEmployee;
+        $scope.toggleEditMode = toggleEditMode;
 
         activate();
 
@@ -22,18 +21,18 @@
 
         function getEmployees(limit) {
             return employees.getEmployees(limit).then(function (data) {
-                vm.employees = data;
-                vm.employees.forEach(function (item) {
+                $scope.employees = data;
+                $scope.employees.forEach(function (item) {
                     item.disabled = true;
                 });
-                return vm.employees;
+                return $scope.employees;
             });
         }
 
         function toggleEditMode(id) {
             var employee = {};
 
-            vm.employees.forEach(function (item) {
+            $scope.employees.forEach(function (item) {
                 if(item.empNo === id){
                     item.disabled = !item.disabled;
                     employee = item;
@@ -49,11 +48,12 @@
         function deleteEmployee(id) {
             employees.deleteEmployee(id);
 
-            for(var i = 0; i < vm.employees.length; i++){
-                if(vm.employees[i].empNo === id){
-                    vm.employees.splice(i, 1);
+            for(var i = 0; i < $scope.employees.length; i++){
+                if($scope.employees[i].empNo === id){
+                    $scope.employees.splice(i, 1);
                 }
             }
+            logger.info("Employee is deleted")
         }
 
     }
