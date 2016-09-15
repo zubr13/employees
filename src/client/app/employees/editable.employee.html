@@ -1,0 +1,23 @@
+<td ng-bind="employee.empNo"></td>
+<td>
+    <span ng-show="employee.disabled" ng-bind="employee.firstName"></span>
+    <input ng-hide="employee.disabled" type="text" class="form-control" title="firstName"  ng-model="employee.firstName">
+</td>
+<td>
+    <span ng-show="employee.disabled" ng-bind="employee.lastName"></span>
+    <input ng-hide="employee.disabled" type="text" class="form-control" title="lastName" ng-model="employee.lastName">
+</td>
+<td>
+    <button ng-show="employee.disabled" ng-click="toggleEditMode(employee.empNo)" type="button" class="btn btn-primary">
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+    </button>
+    <button ng-hide="employee.disabled" ng-click="editEmployee(employee.empNo)" type="button" class="btn btn-primary">
+        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+    </button>
+    <button ng-show="employee.disabled" ng-click="deleteEmployee(employee.empNo)" type="button" class="btn btn-danger">
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+    </button>
+    <button ng-hide="employee.disabled" ng-click="toggleEditMode(employee.empNo)" type="button" class="btn btn-danger">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </button>
+</td>
